@@ -2,6 +2,7 @@ class Solution {
 public:
     string convert(string s, int numRows) {
         int len = s.size();
+        if (numRows == 1) return s;
         vector<string> rows(numRows,"");
         for (int i = 0; i < len; ) {
             int j = 0;

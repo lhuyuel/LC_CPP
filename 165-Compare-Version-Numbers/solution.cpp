@@ -1,25 +1,15 @@
 class Solution {
 public:
     // example: 1.5 < 1.11
-    pair<int, int> parseVNum(string v) {
-        string delim = ".";
-        pair<int,int> result;
-        int pos = v.find(delim);
-        if (pos == string::npos) return {stoi(v), 0};
-        else
-             return {stoi(v.substr(0,pos)), stoi(v.substr(pos)) };
-    }
-    
+
     int compareVersion(string version1, string version2) {
-        pair<int,int> v1 = parseVNum(version1);
-        pair<int,int> v2 = parseVNum(version2);
-        if (version1 == "1.0" && version2 == "1.1") return v2.second+5;
-        if (v1.first == v2.first) {
-            if (v1.second == v2.second) return 0;
-            else
-                return (v1.second > v2.second) ? 1 : -1;
-        }
-        else 
-            return (v1.first > v2.first) ? 1 : -1;
+            for (int i = 0, j = 0; i< version1.size(); ) {
+                string v1 = "", v2 = "";
+                while (version1[i] != '.' && i < version1.size()) v1 += version1[i++];
+                while (version2[j] != '.' && j < version2.size()) v2 += version2[j++];
+                if (stoi(v1) > stoi(v2)) return 1;
+                else if (stoi(v1) < stoi(v2)) return -1;
+            }
+            return 0;
     }
 };

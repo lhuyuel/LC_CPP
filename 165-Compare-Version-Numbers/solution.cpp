@@ -11,7 +11,7 @@ public:
                 ++i;
                 ++j;
                 if (i > version1.size()+1) v1 = "0";
-                if (j > version1.size()+1) v2 = "0";
+                if (j > version2.size()+1) v2 = "0";
                 if (stoi(v1) > stoi(v2)) return 1;
                 else if (stoi(v1) < stoi(v2)) return -1;
             }

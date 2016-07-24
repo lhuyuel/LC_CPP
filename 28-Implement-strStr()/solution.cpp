@@ -15,7 +15,7 @@ public:
         if (haystack == needle || needle == "") return 0;
         else if(haystack.size() < needle.size() ) return -1;
         
-        for (int i = 0; i < haystack.size(); ) {
+        for (int i = 0; i < haystack.size(); ++i) {
             while (haystack[i] != needle[0]) ++i;
             if (i > haystack.size() -1 ) return -1;
             int j = 0;

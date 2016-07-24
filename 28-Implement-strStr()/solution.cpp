@@ -7,10 +7,14 @@ public:
     // ""    "a"
     //  "abcdefcdg"     cdg
     // Brute Force
+    
+    // "aaaaa"   size =5
+    // "bba"     size = 3
+
     int strStr(string haystack, string needle) {
         if (haystack == needle) return 0;
         int pre = 0;
-        for (int i = 0; i < haystack.size(); ++i ) {
+        for (int i = 0; i < haystack.size(); ) {
             while (haystack[i] != needle[0]) ++i;
             pre = i + 1;
             int j = 0;

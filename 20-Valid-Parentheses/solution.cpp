@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // 这样的写法就使这段代码也适用于s中包含其他字符的情况
+
     bool isValid(string s) {
         stack<char> stk;
         for (int i = 0; i < s.size(); ++i) {

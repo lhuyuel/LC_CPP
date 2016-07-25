@@ -1,12 +1,7 @@
 class Solution {
 public:
-
-
-// n = 1 , ()
-// n = 2, ()(), (())
-// n = 3, () + n(2) , ( n(2) ), n(2) + ()  ; ()()(), ()(()), (()()), ((())), ()()(), (())()
-// n = 4, () + n(3), ( n(3) ), n(3) + ()
-
+// 可以用一个map记录已经求过的解
+// f(n) = ( f(0) )^f(n-1) ... (f(n-1))^f(0) 
     vector<string> generateParenthesis(int n) {
         if (n == 0) return vector<string> (1,"");
         else if (n == 1) return vector<string> (1,"()");

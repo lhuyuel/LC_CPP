@@ -9,7 +9,7 @@
  */
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+/*    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         TreeNode * cur = root;
         while(1){
             // 在区间里
@@ -23,5 +23,15 @@ public:
             else
                 cur = cur->right;
        }
+    }
+    */
+    
+    //  递归
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root) return nullptr;
+        if (root->val >= p && root->val <= q || root->val >= q && root->val <= p)
+            return root;
+        else if (root->val > p) lowestCommonAncestor(root->left, p, q);
+        else lowestCommonAncestor(root->right, p, 1);
     }
 };

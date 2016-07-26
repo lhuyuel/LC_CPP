@@ -10,30 +10,24 @@
 class Solution {
 public:
     // 适合BFS 
+
     int minDepth(TreeNode* root) {
-        if (!root) return 0;
-        queue<TreeNode*> toVisit;
-        toVisit.push(root);
-        toVisit.push(nullptr);
-        int minD = 1;
-        
-        while (!toVisit.empty()) {
-            TreeNode* tmp = toVisit.front();
-            toVisit.pop();
-            if (!tmp) {
-                if (toVisit.empty()) break;
-                else {
-                    toVisit.push(nullptr);
-                    ++minD;
-                }
-            }
-            else {
-                if (!tmp->left && !tmp->right)
-                    return minD;
-                if (tmp->left) toVisit.push(tmp->left);
-                if (tmp->right) toVisit.push(tmp->right);
-            }
+    if (!root) return 0;
+    queue<TreeNode*> Q;
+    Q.push(root);
+    int i = 0;
+    while (!Q.empty()) {
+        i++;
+        int k = Q.size();
+        for (int j = 0; j < k; j++) {
+            TreeNode* rt = Q.front();
+            if (rt->left) Q.push(rt->left);
+            if (rt->right) Q.push(rt->right);
+            Q.pop();
+            if (rt->left==NULL && rt->right==NULL) return i;
         }
-        return minD;
     }
+    return i;
+}
+
 };

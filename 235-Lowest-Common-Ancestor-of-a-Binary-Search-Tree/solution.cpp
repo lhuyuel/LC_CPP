@@ -31,7 +31,7 @@ public:
         if (!root) return nullptr;
         if (root->val >= p->val && root->val <= q->val || root->val >= q->val && root->val <= p->val)
             return root;
-        else if (root->val > p) lowestCommonAncestor(root->left, p, q);
+        else if (root->val > p->val) lowestCommonAncestor(root->left, p, q);
         else lowestCommonAncestor(root->right, p, 1);
     }
 };

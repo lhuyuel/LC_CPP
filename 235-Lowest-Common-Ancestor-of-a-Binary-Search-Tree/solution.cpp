@@ -12,9 +12,12 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         TreeNode * cur = root;
         while(1){
+            // 在区间里
             if(  (cur->val >= p->val && cur->val <= q->val)  || 
                  (cur->val >= q->val && cur->val <= p->val) )
                 return cur;
+                
+            // 向区间靠拢
             if( cur->val > p->val)
                 cur = cur->left;
             else

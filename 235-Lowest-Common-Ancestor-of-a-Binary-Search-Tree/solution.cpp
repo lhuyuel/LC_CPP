@@ -10,9 +10,8 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (!root) return nullptr;
         TreeNode * cur = root;
-        while(cur){
+        while(1){
             if(  (cur->val >= p->val && cur->val <= q->val)  || 
                  (cur->val >= q->val && cur->val <= p->val) )
                 return cur;
@@ -21,6 +20,5 @@ public:
             else
                 cur = cur->right;
        }
-       return nullptr;
     }
 };

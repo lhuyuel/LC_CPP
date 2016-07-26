@@ -29,7 +29,7 @@ public:
     //  递归
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (!root) return nullptr;
-        if (root->val >= p && root->val <= q || root->val >= q && root->val <= p)
+        if (root->val >= p->val && root->val <= q->val || root->val >= q->val && root->val <= p->val)
             return root;
         else if (root->val > p) lowestCommonAncestor(root->left, p, q);
         else lowestCommonAncestor(root->right, p, 1);

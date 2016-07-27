@@ -9,6 +9,8 @@
  */
 class Solution {
 public:
+    // 迭代
+    /*
     int kthSmallest(TreeNode* root, int k) {
         if (!root || k < 1 ) return INT_MIN;
         stack<TreeNode*> stk;
@@ -27,5 +29,16 @@ public:
             }
         }
         return INT_MIN;
+    }
+    */
+    // 递归
+    int kthSmallest(TreeNode* root, int &k) {
+        if (!root) return 0;
+        int left = kthSmallest(root->left, k);
+        if (left) return left;
+        --k;
+        if (k == 0) return root->val;
+        int right = kthSmallest(root->right, k);
+        return right;
     }
 };

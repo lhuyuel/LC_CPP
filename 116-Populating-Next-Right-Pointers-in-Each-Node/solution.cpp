@@ -18,12 +18,12 @@ public:
                 cur->left->next = cur->right;
                 cur->right->next = cur->next ? cur->next->left : nullptr;
                 cur = cur->next;
-                if (!cur) {
-                    cur = levelStart;
-                }
+                    
             }
+            cur = levelStart;
             levelStart = levelStart->left;
         }
-        
+            
     }
+        
 };

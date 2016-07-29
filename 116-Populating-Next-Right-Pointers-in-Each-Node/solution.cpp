@@ -14,7 +14,7 @@ public:
         TreeLinkNode *cur = root;
         root->next = nullptr;
         while (levelStart) {
-            levelStart = cur->left;
+            levelStart = levelStart->left;
             while (cur) {
                 cur->left->next = cur->right;
                 cur->right->next = cur->next ? cur->next->left : nullptr;

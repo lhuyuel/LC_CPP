@@ -22,7 +22,7 @@ public:
     
     */
 
-    static unordered_map<TreeNode*, int> valTable;
+    const unordered_map<TreeNode*, int> valTable;
     
     int checkTable(TreeNode* node) {
         if (valTable.find(node) != valTable.end())

@@ -25,8 +25,8 @@ public:
         if (start == end) return node;
         
         int idx = getInOrderIdx(inorder, node->val, start, end);
-        node->left = buildHelper(inorder, postorder, start, idx-1);
         node->right = buildHelper(inorder, postorder, idx + 1, end);
+        node->left = buildHelper(inorder, postorder, start, idx-1);
         return node;
     }
 

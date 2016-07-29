@@ -10,17 +10,15 @@ class Solution {
 public:
     void connect(TreeLinkNode *root) {
         if (!root) return;
-        TreeLinkNode *levelStart = root;
+        TreeLinkNode *levelStart = root->left;
         TreeLinkNode *cur = root;
         root->next = nullptr;
         while (levelStart) {
             levelStart = cur->left;
             while (cur) {
-                if (cur->left && cur->right) {
-                    cur->left->next = cur->right;
-                    cur->right->next = cur->next ? cur->next->left : nullptr;
-                    cur = cur->next;
-                }
+                cur->left->next = cur->right;
+                cur->right->next = cur->next ? cur->next->left : nullptr;
+                cur = cur->next;
                 if (!cur) {
                     cur = levelStart;
                 }

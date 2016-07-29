@@ -22,15 +22,25 @@ public:
     
     */
 
+    unordered_map<TreeNode*, int> valTable;
+    
+    int checkTable(TreeNode* node) {
+        if (valTable.find(node) != valTable.end())
+            return valTable[node];
+        valTable[node] = rob(node);
+        return valTable[node];
+    }
     
     int rob(TreeNode* root) {
+        
         if (!root) return 0;
-        int skipThisNode = rob(root->left) + rob(root->right);
+        int skipThisNode = checkTable(root->left) + checkTable(root->right);
+
         int robThisNode = root->val;
         if (root->left) 
-            robThisNode += ( rob(root->left->left) + rob(root->left->right));
+            robThisNode += ( checkTable(root->left->left) + checkTable(root->left->right));
         if (root->right)
-            robThisNode += (rob(root->right->left) + rob(root->right->right));
+            robThisNode += (checkTable(root->right->left) + checkTable(root->right->right));
         return max(skipThisNode, robThisNode);
     }
 };

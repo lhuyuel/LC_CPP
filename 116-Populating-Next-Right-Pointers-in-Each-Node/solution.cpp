@@ -10,8 +10,8 @@ class Solution {
 public:
     void connect(TreeLinkNode *root) {
         if (!root) return;
-        TreeNode *levelStart = root;
-        TreeNode *cur = root;
+        TreeLinkNode *levelStart = root;
+        TreeLinkNode *cur = root;
         root->next = nullptr;
         while (levelStart) {
             levelStart = cur->left;

@@ -24,7 +24,7 @@ public:
         if (start > end) return nullptr;
         TreeNode *node = new TreeNode(preorder[preOrderIdx++]);
         if (start == end) return node;
-        int idx = getInOrderIdx(inorder, preorder[preOrderIdx++], start, end);
+        int idx = getInOrderIdx(inorder, node->val, start, end);
         node->left = buildHelper(preorder,inorder, start, idx-1);
         node->right = buildHelper(preorder, inorder, idx +1, end);
         return node;

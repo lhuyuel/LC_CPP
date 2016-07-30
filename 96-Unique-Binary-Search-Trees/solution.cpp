@@ -11,7 +11,7 @@ public:
     
     
     int numTrees(int n) {
-        vector<int> catlan(n,0);
+        vector<int> catlan(n+1,0);
         catlan[0] = catlan[1] = 1;
         
         for(int k = 2; k <= n; ++k) {

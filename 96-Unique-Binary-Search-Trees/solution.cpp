@@ -1,14 +1,8 @@
 class Solution {
 public:
 
+    // DP
     // f(n) = f(0)*f(n-1) + f(1) *f(n-2) +...+ f(n-1)*f(0)
-    // f(0) = 1, f(1) = 1
-    // f(2) = 1*1 + 1*1 = 2
-    // test case: n =3:
-    //   k = 2
-    // catlan[2] = 2
-    // c[3] = c[0]*c[2] =2             c[3] = 2 + c[1]*c[1] =3      c[3] = 3 + c[2]*c[0] = 5
-    
     
     int numTrees(int n) {
         vector<int> catlan(n+1,0);

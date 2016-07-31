@@ -12,7 +12,7 @@ public:
 // Encodes a tree to a single string.
 string serialize(TreeNode* root) {
     string result = "";
-    queue<TreeNode*> toVisit{root};
+    deque<TreeNode*> toVisit{root};
     
     while (!toVisit.empty()) {
         TreeNode *tmp = toVisit.front();

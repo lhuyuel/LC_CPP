@@ -9,7 +9,7 @@
 class Solution {
 public:
 
-    TreeNode *findFirst(TreeNode start) {
+    TreeNode *findFirst(TreeNode* start) {
         while (start) {
             if (start->left) return start->left;
             if (start->right) return start->right;

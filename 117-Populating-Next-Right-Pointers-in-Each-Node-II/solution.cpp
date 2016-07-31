@@ -9,7 +9,7 @@
 class Solution {
 public:
 
-    TreeNode *findFirst(TreeNode* start) {
+    TreeLinkNode *findFirst(TreeLinkNode* start) {
         while (start) {
             if (start->left) return start->left;
             if (start->right) return start->right;
@@ -20,7 +20,7 @@ public:
 
     void connect(TreeLinkNode *root) {
         if (!root) return nullptr;
-        TreeNode *levelStart = root, *cur = root;
+        TreeLinkNode *levelStart = root, *cur = root;
         root->next = nullptr;
         while (levelStart) {
             while (cur) {

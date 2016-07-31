@@ -12,16 +12,17 @@ public:
 // Encodes a tree to a single string.
 string serialize(TreeNode* root) {
     string result = "";
-    deque<TreeNode*> toVisit{root};
+    queue<TreeNode*> toVisit;
+    toVisit.push(root);
     
     while (!toVisit.empty()) {
         TreeNode *tmp = toVisit.front();
         toVisit.pop_front();
         
         if (tmp) {
+            result += (to_string(tmp->val) + " ");
             toVisit.push(tmp->left);
             toVisit.push(tmp->right);
-            result += (to_string(tmp->val) + " ");
         }
         else {
             result += "null ";
@@ -35,7 +36,7 @@ string serialize(TreeNode* root) {
 TreeNode* deserialize(string data) {
     vector<TreeNode*> nodes;
     istringstream in(data);
-    string tmp = "";
+    string tmp;
     while (in >> tmp) {
         if (tmp != "null") nodes.push_back(new TreeNode(stoi(tmp)));
         else nodes.push_back(nullptr);
@@ -43,12 +44,12 @@ TreeNode* deserialize(string data) {
     
     int cur = 0, i = 1;
     while (i < nodes.size()) {
-        if (nodes[cur] != nullptr) {
+        if (nodes[cur]) {
             nodes[cur]->left = nodes[i++];
             if (i < nodes.size())
                 nodes[cur]->right = nodes[i++];
         }
-        ++i;
+        ++cur;
     }
     
     return nodes[0];

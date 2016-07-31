@@ -17,7 +17,7 @@ string serialize(TreeNode* root) {
     
     while (!toVisit.empty()) {
         TreeNode *tmp = toVisit.front();
-        toVisit.pop_front();
+        toVisit.pop();
         
         if (tmp) {
             result += (to_string(tmp->val) + " ");

@@ -9,45 +9,48 @@
  */
 class Codec {
 public:
+// Encodes a tree to a single string.
 string serialize(TreeNode* root) {
-    deque<TreeNode*> nodes{root};
-    string ans="";
-    while(!nodes.empty()){
-        TreeNode* head=nodes.front();
-        nodes.pop_front();
-        if(head!=NULL){
-            ans+= to_string(head->val)+" ";
-            nodes.push_back(head->left);
-            nodes.push_back(head->right);
+    string result = "";
+    queue<TreeNode*> toVisit{root};
+    
+    while (!toVisit.empty()) {
+        TreeNode *tmp = toVisit.front();
+        toVisit.pop_front();
+        
+        if (tmp) {
+            toVisit.push(tmp->left);
+            toVisit.push(tmp->right);
+            result += (to_string(tmp->val) + " ");
         }
-        else{
-            ans+="null ";
+        else {
+            result += "null ";
         }
     }
-    return ans;
+    return result;
 }
+
 
 // Decodes your encoded data to tree.
 TreeNode* deserialize(string data) {
+    vector<TreeNode*> nodes;
     istringstream in(data);
-    vector<TreeNode *> nodes;
-    string tmp;
-    while(in>>tmp){
-        if(tmp!="null"){
-            nodes.push_back(new TreeNode(stoi(tmp)));
-        }
-        else{
-            nodes.push_back(NULL);
-        }
+    string tmp = "";
+    while (in >> tmp) {
+        if (tmp != "null") nodes.push_back(new TreeNode(stoi(tmp)));
+        else nodes.push_back(nullptr);
     }
-    int pos=0, offset=1;
-    while(offset < nodes.size()){
-        if(nodes[pos]!=NULL){
-            nodes[pos]->left=nodes[offset++];
-            if(offset<nodes.size()) nodes[pos]->right=nodes[offset++];
+    
+    int cur = 0, i = 1;
+    while (i < nodes.size()) {
+        if (nodes[cur] != nullptr) {
+            nodes[cur]->left = nodes[i++];
+            if (i < nodes.size())
+                nodes[cur]->right = nodes[i++];
         }
-        pos+=1;
+        ++i;
     }
+    
     return nodes[0];
 }
  

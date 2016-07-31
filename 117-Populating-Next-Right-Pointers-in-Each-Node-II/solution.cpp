@@ -25,18 +25,19 @@ public:
         while (levelStart) {
             while (cur) {
                 if (cur->left) {
-                    if (cur->right) {
+                    if (cur->right)
                         cur->left->next = cur->right;
-                        cur->right->next = findFirst(cur);
-                    }
                     else 
-                        cur->left->next = findFirst(cur);
+                        cur->left->next = findFirst(cur->next);
                 }
+                if (cur->right) 
+                    cur->right->next = findFirst(cur->next);
+                    
                 cur = cur->next;
             }
             if (!cur) {
-                cur = levelStart;
                 levelStart = findFirst(levelStart);
+                cur = levelStart;
             }
         }
     }

@@ -19,7 +19,7 @@ public:
     }
 
     void connect(TreeLinkNode *root) {
-        if (!root) return nullptr;
+        if (!root) return;
         TreeLinkNode *levelStart = root, *cur = root;
         root->next = nullptr;
         while (levelStart) {

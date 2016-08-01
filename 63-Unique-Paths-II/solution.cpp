@@ -9,8 +9,8 @@ public:
         vector<int> dp(m+1,0);
         dp[1] = 1;
         for (int i = 0; i < n; ++i) 
-            for (int j = 1; j < m; ++j) {
-                dp[j] = obstacleGrid[i-1][j-1] ? 0 : dp[j] + dp[j-1];
+            for (int j = 0; j < m; ++j) {
+                dp[j+1] = obstacleGrid[i][j] ? 0 : dp[j+1] + dp[j];
             }
         return dp[m];
     }

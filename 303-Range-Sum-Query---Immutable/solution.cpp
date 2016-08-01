@@ -1,6 +1,7 @@
 class NumArray {
 public:
 
+    // sumRange(i,j) = sum[0,j]- sum[0,i]
     vector<int> sumN;
     NumArray(vector<int> &nums) {
         if (nums.size() == 0) return;

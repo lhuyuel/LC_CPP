@@ -9,8 +9,7 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* pre = nullptr;
-        ListNode* nxt = head->next;
+        ListNode* pre = nullptr, *nxt = nullptr;
         while (head) {
             nxt = head->next;
             head->next = pre;

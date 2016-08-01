@@ -11,7 +11,7 @@ coins = [1, 2, 5], amount = 11
         for (int i = 1; i <= amount; ++i) {
             int minNum = INT_MAX;
             for (int j = 0; j < coins.size(); ++j) {
-                if (coins[j] <= i && dp[i - coins[j]] != INT_MAX) {
+                if (dp[i - coins[j]] != INT_MAX && coins[j] <= i) {
                     minNum = min(minNum, dp[i - coins[j]] + 1);
                 }
             }

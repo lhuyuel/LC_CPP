@@ -15,7 +15,7 @@ public:
             nxt = head->next;
             head->next = pre;
             pre = head;
-            haed = nxt;
+            head = nxt;
         }
         return pre;
     }

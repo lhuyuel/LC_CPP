@@ -6,7 +6,7 @@ coins = [1, 2, 5], amount = 11
 */
     int coinChange(vector<int>& coins, int amount) {
        if (amount == 0) return 0;
-       coins.sort(coins.begin(),coins.end());
+       sort(coins.begin(),coins.end());
        if (amount < coins[0]) return -1;    
        int n = coins.size();
        vector<int> f(amount+1, -1);

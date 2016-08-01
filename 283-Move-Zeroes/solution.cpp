@@ -4,6 +4,8 @@ public:
         int count = 0;
         for (auto num : nums)
             if (num) nums[count++] = num;
+        
+        // set zeros
         for (int i = count; i < nums.size(); ++i) 
             nums[i] = 0;
     }

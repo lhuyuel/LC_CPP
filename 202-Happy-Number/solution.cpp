@@ -11,6 +11,7 @@ public:
         
         int sum = 0;
         while (sum != 1) {
+            sum = 0;
             while (n) {
                 sum += pow((n%10), 2);
                 n /= 10;

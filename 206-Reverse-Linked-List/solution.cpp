@@ -10,7 +10,7 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         ListNode* pre = nullptr;
-        ListNode* nxt = head->nxt;
+        ListNode* nxt = head->next;
         while (head) {
             nxt = head->next;
             head->next = pre;

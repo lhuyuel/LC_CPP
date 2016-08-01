@@ -6,7 +6,7 @@ public:
         vector<int> dp(m+1,1);
         
         for (int j = 1; j < m; ++j) 
-                if (!obstacleGrid[n][m]) dp[j] = 0;
+                if (!obstacleGrid[0][m]) dp[j] = 0;
 
         for (int i = 1; i < n; ++i) 
             for (int j = 1; j < m; ++j) {

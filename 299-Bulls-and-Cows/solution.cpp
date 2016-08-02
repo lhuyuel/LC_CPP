@@ -5,7 +5,8 @@ public:
         int countA = 0, countTotal = 0;
         vector<int> hashTable(10,0);
         for (int i = 0; i < secret.size(); ++i) {
-            if (secret[i] == guess[i]) ++countA;
+            if (secret[i] == guess[i]) 
+                ++countA;
             ++hashTable[secret[i]];
         }
         

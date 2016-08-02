@@ -5,6 +5,7 @@ int guess(int num);
 
 class Solution {
 public:
+    // 就是binary search
     int guessNumber(int n) {
         int start = 1, end = n, mid = 0;
         while (1) {

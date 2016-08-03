@@ -8,12 +8,14 @@ public:
         int start = 1, end = n, mid = 0;
         while (1) {
             mid = (end - start)/2 + start;
-            if (isBadVersion(mid)) 
+            if (isBadVersion(mid)) {
                 if (isBadVersion(mid+1)) start = mid +1;
                 else return mid;
-            else 
+            }
+            else { 
                 if (isBadVersion(mid -1)) return mid-1;
                 else end = mid-1;
+            }
         }
     }
 };

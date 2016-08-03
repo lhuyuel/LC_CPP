@@ -9,7 +9,7 @@ public:
         while (start != end) {
             mid = (end - start)/2 + start;
             if (isBadVersion(mid)) end = mid;
-            else start = mid;
+            else start = mid+1;
         }
         return start;
     }

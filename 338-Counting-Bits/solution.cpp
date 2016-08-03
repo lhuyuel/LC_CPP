@@ -1,14 +1,20 @@
 class Solution {
 public:
     vector<int> countBits(int num) {
-        vector<int> table = {0, 1, 1, 2};
-        vector<int> result(num+1,0);
-        int i = 0, count = 0;
-        while (i <= num) {
-            for (int j = 0; j < table.size(); ++j) {
-                result[i++] = table[j] + count;
+        vector<int> result;
+        result.push_back(0);
+        if (num == 0) return result;
+        
+        result.push_back(1);
+        if (num == 1) return result;
+        
+        int count = 2;
+        while (count <= num) {
+            int len = result.size();
+            for (int i = 0; i < len && count <= num; ++i) {
+                result.push_back(result[i] + 1);
+                ++count;
             }
-            ++count;
         }
         return result;
     }

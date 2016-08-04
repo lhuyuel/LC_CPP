@@ -15,7 +15,7 @@ public:
         int maxProduct = 0;
         for (int i = 0; i < words.size(); ++i) {
             for (int j = i+1; j < words.size(); ++j) {
-                if (!(bitWord[i] & bitWord[j]))
+                if ((bitWord[i] & bitWord[j]) == 0)
                     maxProduct = max(maxProduct, (int) (words[i].length()* words[j].length()));
             }
         }

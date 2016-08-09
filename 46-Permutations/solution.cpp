@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // O(N*N!)
     void dfs(vector<int>& nums, int start, vector<int> path, vector<vector<int>> &result) {
         int n = nums.size();
         if (start == n-1) {

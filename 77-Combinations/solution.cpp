@@ -1,7 +1,7 @@
 class Solution {
 public:
-/*
-    void combination(int n, int k, int start, vector<int> path, vector<vector<int>> &result) {
+
+    void combination(int n, int k, int start, vector<int> &path, vector<vector<int>> &result) {
         if (k == 0) {
             result.push_back(path);
             return;
@@ -18,8 +18,8 @@ public:
         vector<int> path;
         combination(n, k, 1, path, result);
         return result;
-    }*/
-    
+    }
+  /*  
     vector<vector<int>> result;
     
     void getCombine(int n, int k, vector<int> &tmp){
@@ -40,4 +40,5 @@ public:
         getCombine(n,k,tmp);
         return result;
     }
+    */
 };

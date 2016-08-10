@@ -11,7 +11,6 @@ public:
 	int next();
 	// Returns true if the iteration has more elements.
 	bool hasNext() const;
-private:
     int idx;
 };
 

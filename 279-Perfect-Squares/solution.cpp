@@ -5,8 +5,8 @@ public:
         vector<int> squares;
         for (int i = 1; i*i <= n; ++i)
             squares.push_back(i*i);
-        static vector<int> dp(n+1,INT_MAX);
-        dp[0] = 0; 
+        static vector<int> dp{0};
+        dp.resize(n+1, INT_MAX); 
         // dp(n) = min(dp(n-squares[i]),....,) + 1
         
         for (int i = 1; i <= n; ++i) {

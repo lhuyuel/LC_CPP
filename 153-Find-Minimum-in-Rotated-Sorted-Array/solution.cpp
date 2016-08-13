@@ -4,6 +4,17 @@ public:
     int findMin(vector<int>& nums) {
         int left = 0, right = nums.size()-1, mid = 0;
         while (left < right) {
+            mid = (right - left)/2 + left;
+            if (nums[mid] > nums[right]) left = mid + 1;
+            else right = mid;
+        }
+        return nums[left];
+    }
+    
+    /*
+    int findMin(vector<int>& nums) {
+        int left = 0, right = nums.size()-1, mid = 0;
+        while (left < right) {
             // Two elem left to check
             if (left == (right-1)) return 
                 min(nums[left],nums[right]);
@@ -17,4 +28,5 @@ public:
         }
         return nums[left];
     }
+    */
 };

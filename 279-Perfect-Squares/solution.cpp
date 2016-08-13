@@ -1,21 +1,20 @@
 class Solution {
 public:
-    // Lagrange's four-square theorem(https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem)
+    //  DP
     int numSquares(int n) {
-        while (n % 4 == 0)
-            n /= 4;
-        if (n % 8 == 7)
-            return 4;
-        bool min2 = false;
-        for (int i=2; i<=n; ++i) {
-            if (i > n/i)
-                i = n;
-            int e = 0;
-            while (n % i == 0) n /= i, ++e;
-            if (e % 2 && i % 4 == 3)
-                return 3;
-            min2 |= e % 2;
+        vector<int> squares;
+        for (int i = 1; i*i <= n; ++i)
+            squares.push_back(i*i);
+        static vector<int> dp(n+1,INT_MAX);
+        dp[0] = 0; 
+        // dp(n) = min(dp(n-squares[i]),....,) + 1
+        
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 0; j < squares.size() && i>= squares[j] ; ++j) {
+                dp[i] = min(dp[i-squares[j]], dp[i]);
+            }
+            ++dp[i];
+        }
+        return dp[n];
     }
-    return 1 + min2;
-}
 };

@@ -9,12 +9,13 @@ public:
             val = max(prepre + nums[i], pre);
             prepre = pre, pre = val;
         }
-        return max(val,pre);
+        return val;
     }
     int rob(vector<int>& nums) {
         int n = nums.size();
         if (n == 0) return 0;
         if (n == 1) return nums[0];
+        if (n == 2) return max(nums[0], nums[1]);
         return max(linearRob(nums,0, n-1), linearRob(nums,1,n));
     }
 };

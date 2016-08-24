@@ -19,9 +19,9 @@ class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
         if (!head) return nullptr;
-        
+        if (!head->next) return new TreeNode(head->val);
         // find the mid
-        ListNode *slow = head, *fast = head, *pre = slow;
+        ListNode *slow = head, *fast = head, *pre = nullptr;
         while (fast->next) {
             pre = slow;
             slow = slow->next;
@@ -29,7 +29,7 @@ public:
         }
         
         // break the list in the middle
-        pre->next = nullptr;
+        if (pre) pre->next = nullptr;
         
         // create root node
         TreeNode *root = new TreeNode(slow->val);

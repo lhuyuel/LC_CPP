@@ -19,10 +19,13 @@ class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
         if (!head) return nullptr;
-        if (!head->next) return new TreeNode(head->val);
+        if (!head->next) {
+            TreeNode *root = new TreeNode(head->val);
+            return root;
+        }
         // find the mid
         ListNode *slow = head, *fast = head, *pre = nullptr;
-        while (fast->next) {
+        while (fast && fast->next) {
             pre = slow;
             slow = slow->next;
             fast = fast->next->next;
@@ -36,7 +39,7 @@ public:
         
         // set root->left and root->right
         root->left = sortedListToBST(head);
-        root->left = sortedListToBST(slow->next);
+        root->right = sortedListToBST(slow->next);
         
         return root;
     }

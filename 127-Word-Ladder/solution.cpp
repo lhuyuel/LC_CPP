@@ -3,7 +3,7 @@ public:
     // BFS
     
     // Find all the strings in the dictionary that can reach by only change one letter in the stirng cur
-    vector<stirng> findNeighbor(string cur, unordered_set<string> & wordList) {
+    vector<string> findNeighbor(string cur, unordered_set<string> & wordList) {
         vector<string> neighbors;
         for (size_t i = 0; i < cur.size(); ++i) {
             for (int j = 0; j < 26; ++j) {

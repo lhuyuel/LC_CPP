@@ -18,9 +18,10 @@ n -> 1
 */
     int helper(int n, int step) {
         if (n == 1) return step;
+        if (n == INT_MAX) return helper(n>>1,++step);
         //int tmpStep = 0;
         if (n%2 == 0) {
-            step = helper(n/2, ++step);
+            step = helper(n>>1, ++step);
         } else{
             step = min(helper(n-1,step+1), helper((n+1), step+1));
         }

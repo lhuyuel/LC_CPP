@@ -13,6 +13,8 @@ a/c = a/b * b/c = 2*3, b/a = 1/(a/b) = 1/2, a/e(e does not exist), a/a = 1, x/x 
           a <b,2>
           b <a,0.5> <c,3>
           c <b,1/3>
+
+          n个node，最多有Cn2 * 2 条边 = n*(n-1), dfs O(V+E), V = n, E = n^2 -n (worst case)
         */
     bool getValue(string first,string second, unordered_map<string, 
                     vector<pair<string,double>> > &str_div_table, double &res) {
@@ -27,6 +29,7 @@ a/c = a/b * b/c = 2*3, b/a = 1/(a/b) = 1/2, a/e(e does not exist), a/a = 1, x/x 
         
         // one step further
         bool found = false;
+        // 由于双向都建了临接表，这个循环里需要排除之前已经经过的node
         for (int i = 0; i < str_div_table[first].size(); ++i) {
             res = res * str_div_table[first][i].second;
             found = getValue(str_div_table[first][i].first, second, str_div_table, res);

@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // beat 100% :)
     // keep an array of current increasing sub, size is 3
     bool increasingTriplet(vector<int>& nums) {
         int minNum1 = INT_MAX, minNum2 = INT_MAX;

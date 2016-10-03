@@ -19,6 +19,7 @@ public:
     */
     int sumOfLeftLeaves(TreeNode* root) {
         int sum = 0;
+        if (!root) return sum;
         stack<TreeNode*> stk;
         stk.push(root);
         while (!stk.empty()) {

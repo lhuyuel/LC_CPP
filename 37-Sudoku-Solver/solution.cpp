@@ -1,3 +1,5 @@
+class Solution {
+public:
     /* dsf 
        try each options for each position, the brute force dfs will take exponential time
        give a heurist will devrease the time dramatically.
@@ -27,48 +29,64 @@
             }
         }
         
-        // check square
+        // check square     row index should be pos.first/3
+        int row = pos.first/3, col = pos.second/3;
+        for (int i = row; i < row + 3; ++i)
+            for (int j = col; j < col + 3; ++j) 
+                if (board[i][j] != '.') {
+                    int num = board[i][j] - '0';
+                    checkDup[num-1] = true;
+                }
         
+        // check checkDup array, if false push to result
+        for ( int i = 0; i < checkDup.size(); ++i)
+            if (!checkDup[i]) opts.push_back(i+1);
         
         return opts;
     }
     
     // return {INT_MIN,INT_MIN} if no empty cell left
     // table stores {pos, options} pair
-    pair<int,int> getNextEmpty(vector<vector<char>>& board, unordered_map<pair<int,int>, vector<int>> &table) {
+    pair<int,int> getNextEmpty(vector<vector<char>>& board) {
         int m = board.size(), n = board[0].size();
         int minOp = INT_MAX, minX = INT_MIN, minY = INT_MIN;
         for (int i = 0; i < m; ++i) 
-            for (int j = 0; j < n; +j)
+            for (int j = 0; j < n; ++j)
                 // if it is empty check its options
                 if (board[i][j] == '.') {
                     vector<int> opts = getOptions({i,j}, board);
-                    table[{i,j}] = opts;
+                    //table[i][j] = opts;
                     if (opts.size() < minOp) {
                         minX = i, minY = j;
+                        minOp = opts.size();
                     }
                 }
             
         return {minX, minY};
     }
-    
-    
-    void dfs(vector<vector<char>>& board, unordered_map<pair<int,int>, vector<int>> &table) {
-        table.clear();
-        pair<int,int> curPos = getNextEmpty(board, table);
+    //vector<vector<char>> sol;
+    // unordered_map<pair<int,int>, vector<int>> &table
+    bool dfs(vector<vector<char>>& board) {
+        //vector<vector<vector<int>>> table(9,vector<vector<int>>(9));
+        pair<int,int> curPos = getNextEmpty(board);
         
         // termination condition
-        if (curPos.first == INT_MIN && curPos.second == INT_MIN) return;
+        if (curPos.first == INT_MIN && curPos.second == INT_MIN) {
+            return true;
+        }
         
-        vector<int> opts = table[curPos];
+        //vector<int> opts = table[curPos.first][curPos.second];
+        vector<int> opts = getOptions(curPos,board);
         for (int i = 0; i < opts.size(); ++i) {
             board[curPos.first][curPos.second] = opts[i] + '0';
-            dfs(board);
+            if ( dfs(board)) return true;
             board[curPos.first][curPos.second] = '.';
         }
-    
+        return false;
     }
 
     void solveSudoku(vector<vector<char>>& board) {
-        
+        //vector<vector<vector<int>> table;
+        dfs(board);
     }
+};

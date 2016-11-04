@@ -9,7 +9,7 @@ public:
         for (int i = start; i < nums.size(); ++i) {
             if (nums[i] > target) continue;
             path.push_back(nums[i]);
-            dfs(nums, target-nums[i], i, path, result);
+            dfs(nums, target-nums[i], i, path, result); //这里起始位置是i，因为可以选择当前元素，而对于i之后的元素则不能选择[0,i]的元素这样防止重复
             path.pop_back();
         }
     }
@@ -23,39 +23,3 @@ public:
     }
 };
 
-// 20161103 题目修改了，solution不能有重复
-    void combinationSumHelper(vector<int>& candidates, int target, vector<int> &sol,vector<vector<int>> &result) {
-        // termination condition
-        if (target == 0) {
-            result.push_back(sol);
-            return;
-        }
-        
-        // try every options
-        for (auto c: candidates) {
-            // prune
-            if (target - c >= 0) {
-                sol.push_back(c);
-                combinationSumHelper(candidates, target - c, sol, result);
-                sol.pop_back();
-            }
-        }
-    }
-    
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<int> sol;
-        vector<vector<int>> result;
-        sort(candidates.begin(), candidates.end());
-        combinationSumHelper(candidates,target, sol, result);
-        if (result.size() != 0) {
-            // remove dup
-            for (auto &v : result) sort(v.begin(), v.end());
-            sort(result.begin(), result.end());
-            
-            int count = 0;
-            for (int i = 1; i < result.size(); ++i)
-                if (result[i] != result[count]) result[++count] = result[i];
-            result.resize(count+1);
-        }
-        return result;
-    }

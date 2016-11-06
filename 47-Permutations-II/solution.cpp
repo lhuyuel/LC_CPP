@@ -1,64 +1,63 @@
-class Solution {
-public:
-    // same number with diff index considered the same 
-    // if permute and then reduce dup will cost much more computation if there are a lot of dups 
-    
-    /* Test Case:
- premute[0,0,0,1,9] = 0 + premute[0,0,1,9]
-                              0 + permute[0,1,9]
-                                     0 + premute[1,9]
-                                             1+ permute[9]
-                              9 + permute[0,0,1]
-                                      0 + permute[0,1]
-                                      1 + premute[0,0]
-                      1 + premute[0,0,0,9]
+/*
+  num = [1,1,2,3]
+  recursion(num, 0, 4, res)
+            k = 0,i = 0
+            swap(num[0], num[0])
+            recursion(num, 1, 4, res)
+                    k = 1, i = 1
+                    swap(num[1],num[1])
+                    recurnsion(num, 2,4,res)
+                        k = 2, i = 2
+                        swap(num[2],num[2])
+                        recursion(num, 3, 4)
+                            i = j-1
+                            res.push_back({1,1,2,3})    <----
+                        k = 3, i = 2
+                        
+                    k = 2, i = 1
+                    swap(num[1], nums[2])      // num = {1,2,1,3}
+                    recursion(num, 2, 4, res)
+                        k = 2, i = 2
+                        swap(num[2],num[2])     // num = {1,2,1,3}
+                        recursion(num, 3, 4)
+                            res.push_back({1,2,1,3})   <----
+                        k = 3, i = 2
+                        swap(num[2],num[3])     // num = {1,2,3,1}
+                        recuision(num, 3, 4)
+                            res.push_back({1,2,3,1})   <----
+                    k = 3, i = 1
+                    swap(num[1],num[3])       // num = {1,3,1,2}
+                        k = 2, i = 2
+                        swap(num[2],num[2])     // num = {1,3,1,2}
+                        recursion(num, 3, 4)
+                            res.push_back({1,3,1,2})   <----
+                        k = 3, i = 2
+                        swap(num[2],num[3])     // num = {1,3,2,1}
+                        recuision(num, 3, 4)
+                            res.push_back({1,3,2,1})   <----
+                    
+            k = 2, i = 0
+            swap(num[0],num[1])    // num = {1,1,2,3}
+            recursion(num, 1, 3, res)
+*/
 
-Your answer
 
-[[0,0,1,9],[0,0,9,1],[0,1,0,9],[0,1,9,0],[0,9,1,0],[0,9,0,1],[1,0,0,9],[1,0,9,0],[1,9,0,0],[9,0,1,0],[9,0,0,1],[9,1,0,0],
-[9,0,1,0],[9,0,0,1]]
-Expected answer
-
-[[0,0,1,9],[0,0,9,1],[0,1,0,9],[0,1,9,0],[0,9,0,1],[0,9,1,0],[1,0,0,9],[1,0,9,0],[1,9,0,0],[9,0,0,1],[9,0,1,0],[9,1,0,0]]
-    
-    
-    
-    */
-    
-    
-    void permute(vector<int> &nums, int start,vector<int> path, vector<vector<int>> &result) {
-        int n = nums.size();
-        
-        // termination condition
-        if (start == n-1) {
-            path.push_back(nums[start]);
-            result.push_back(path);
+    void recursion(vector<int> num, int i, vector<vector<int> > &res) {
+        int n = num.size();
+        if (i == n-1) {
+            res.push_back(num);
+            return;
         }
-        
-        // dfs
-        int pre = INT_MAX;
-        for (int i = start; i < n; ++i) {
-            // need to compare to the previous number
-            if (pre != nums[i]) {
-                path.push_back(nums[i]);
-                swap(nums[start], nums[i]);
-                permute(nums,start+1,path,result);
-                swap(nums[start], nums[i]);
-                path.pop_back();
-            }
-            pre = nums[i];
+        for (int k = i; k < n; k++) {
+            if (i != k && num[i] == num[k]) continue;
+            swap(num[i], num[k]);
+            recursion(num, i+1, res);
         }
     }
     
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        // after the sort, same number will be adjacent to each other
-        vector<vector<int>> result;
-        vector<int> path;
-        permute(nums, 0, path, result);
-        set<vector<int>> tmp(result.begin(),result.end());
-        result.resize(tmp.size());
-        copy(tmp.begin(),tmp.end(),result.begin());
-        return result;
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        sort(num.begin(), num.end());
+        vector<vector<int>> res;
+        recursion(num, 0, res);
+        return res;
     }
-};

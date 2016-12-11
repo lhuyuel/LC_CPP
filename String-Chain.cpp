@@ -37,7 +37,9 @@ Solution:
 
 struct compare{
     bool operator() (const string& s1, const string &s2){
-        return s1.length() <= s2.length();
+	// 这里必须是< 而不能是 <=，否则会有segmentation error
+	// 因为需要是strict week ordering
+        return s1.length() < s2.length();
     }
 };
 

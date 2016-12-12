@@ -48,7 +48,7 @@ class myHeap{
             }
             if (idx > hp[0]) return;
             swap(hp[idx], hp[hp[0]]);
-            hp.resize(--hp[0]);
+            hp.resize(hp[0]--); // hp[0] stores the number of elements in the heap
             sink(idx);
             
            // cout << "HP size: "<< hp.size() << ", HP[1]" << hp[1] << endl;

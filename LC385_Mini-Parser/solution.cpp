@@ -32,20 +32,23 @@ public:
     //Given s = "[123,[456,[789]]]"
     NestedInteger deserialize(string s) {
         NestedInteger result;
-        // empty string or []
-        if (s.empty() || s.length() == 2) return result;
-        // pure integer
+        // pure integer starts
         if (s[0] != '[') return NestedInteger(stoi(s));
+
+        // empty string or "[]"
+        if (s.empty() || s.length() == 2) return result;
         
-        int start = 1, len = 0;
+        // every time strip a pair of "[]"
+        int start = 1, depth = 0; 
         for (int i = 1; i < s.length(); ++i) {
-            if (len == 0 && (i == s.length()-1 || s[i] == ',')) {
+            // reach the end of the the integer or
+            if (depth == 0 && ( s[i] == ',' || i == s.length()-1)) {
                 string content = s.substr(start,i-start);
                 result.add(deserialize(content)); 
                 start = i + 1;
            }
-           else if (s[i] == '[') ++len;
-           else if (s[i] == ']') --len;
+           else if (s[i] == '[') ++depth;
+           else if (s[i] == ']') --depth;
         }
         
         return result;

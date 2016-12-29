@@ -1,15 +1,12 @@
-class Solution {
-public:
-    // get num&1, if 1 return false, else >>1
+    // 1. should only have 1 '1'
+    // 2. have even number of '0's
     bool isPowerOfFour(int num) {
-        if (num < 1) return false;
-        if (num == 1) return true;
+        if (num <= 0 || (num & (num - 1)) != 0) 
+            return false;
         int count = 0;
-        while(num > 1) {
-            if ((num&1) != 0) return false;
+        while (num > 1) {
+            num >>= 1;
             ++count;
-            num = num >> 1;
         }
-        return (count&1) == 0;
+        return !(count & 1);
     }
-};
